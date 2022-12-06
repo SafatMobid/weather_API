@@ -44,6 +44,12 @@ window.onload = function() {
 function cityListDropdown(){
     const cityList = document.getElementById("cityList");
 
+    let blankCity = document.createElement("option");
+    blankCity.value = "mountainOption";
+    blankCity.textContent = " "
+    blankCity.style.textAlign = "center"
+    cityList.appendChild(blankCity)
+
     for (let i = 0; i < cities.length; i++) {
         let option = new Option(cities[i].name)
 
@@ -61,7 +67,7 @@ function cityChange(){
         let stationLookupUrl =`https://api.weather.gov/points/${cities[i].latitude},${cities[i].longitude}`;
         if (cityListChoice == cities[i].name){
             infoContainer.innerHTML = stationLookupUrl
-            
+
         }
 
     }
