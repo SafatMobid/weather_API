@@ -25,7 +25,7 @@ let cities = [
 
     {
         name: "Santa Clarita, CA",
-        latitude: 34.3901, 
+        latitude: 34.3900, 
         longitude: -118.5423
     },
 ];
@@ -66,22 +66,29 @@ function cityChange(){
     for (let i=0; i < cities.length; i++){
         let stationLookupUrl =`https://api.weather.gov/points/${cities[i].latitude},${cities[i].longitude}`;
         if (cityListChoice == cities[i].name){
-            infoContainer.innerHTML = stationLookupUrl
+            /* infoContainer.innerHTML = stationLookupUrl */
             
             fetch(stationLookupUrl)
             .then(response => response.json())
             .then (data => {
-                    if( stationLookupUrl == data.id){
+                
                         let forecastUrl = data.properties.forecast
-                        infoContainer.innerHTML = forecastUrl
+                        /* infoContainer.innerHTML = forecastUrl */
                         
                         fetch(forecastUrl)
                         .then(response => response.json())
                         .then(data => {
-                            infoContainer.innerHTML = data.properties.periods[0].startTime
+                            for (let j = 0; j < data.properties.periods.length; j++){
+                                
+                                infoContainer.innerHTML = data.properties.periods[j].startTime
+                                let td = document.createElement("td")
+                                td.innerHTML = data.properties.periods[j].startTime
+                                infoContainer.appendChild(td)
+                                
+
+                            }
                         })
 
-        }
             })
 
         }
