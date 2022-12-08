@@ -79,11 +79,31 @@ function cityChange(){
                         .then(response => response.json())
                         .then(data => {
                             for (let j = 0; j < data.properties.periods.length; j++){
-                                
-                                infoContainer.innerHTML = data.properties.periods[j].startTime
-                                let td = document.createElement("td")
-                                td.innerHTML = data.properties.periods[j].startTime
-                                infoContainer.appendChild(td)
+                                let tbody = document.getElementById("infoContainer");
+
+                                let tr = document.createElement("tr");
+                                tbody.appendChild(tr);
+                    
+                                let td1 = document.createElement("td");
+                                td1.innerHTML = data.properties.periods[j].name
+                                let td2 = document.createElement("td");
+                                td2.innerHTML = data.properties.periods[j].startTime
+                                let td3 = document.createElement("td");
+                                td3.innerHTML = data.properties.periods[j].endTime
+                                let td4 = document.createElement("td");
+                                td4.innerHTML = data.properties.periods[j].temperature + " " + data.properties.periods[j].temperatureUnit
+                                let td5 = document.createElement("td");
+                                td5.innerHTML = data.properties.periods[j].windSpeed
+                                let td6 = document.createElement("td");
+                                td6.innerHTML = data.properties.periods[j].detailedForecast
+                    
+                                tr.appendChild(td1);
+                                tr.appendChild(td2);
+                                tr.appendChild(td3);
+                                tr.appendChild(td4);
+                                tr.appendChild(td5);
+                                tr.appendChild(td6);
+
                                 
 
                             }
